@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="@string/title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_h4"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/ll_write_poems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/iv_write_poems"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/img_selector_write" />
+
+            <TextView
+                android:id="@+id/tv_write_poems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/write_poems"
+                android:textColor="@drawable/text_selector"
+                android:textSize="@dimen/text_size_h5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_poems_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/iv_poems_book"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/img_selector_book" />
+
+            <TextView
+                android:id="@+id/tv_poems_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/poems_book"
+                android:textColor="@drawable/text_selector"
+                android:textSize="@dimen/text_size_h5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_poems_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/iv_poems_table"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/img_selector_table" />
+
+            <TextView
+                android:id="@+id/tv_poems_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/poems_table"
+                android:textColor="@drawable/text_selector"
+                android:textSize="@dimen/text_size_h5" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_tabline"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_below="@+id/ll_top"
+        android:background="@drawable/tabline" />
+</LinearLayout>

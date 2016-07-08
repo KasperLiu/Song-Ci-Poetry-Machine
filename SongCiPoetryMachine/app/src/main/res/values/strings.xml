@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">宋词机</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="title">宋词机</string>
+    <string name="write_poems">写宋词</string>
+    <string name="poems_book">宋词本</string>
+    <string name="poems_table">词频表</string>
+    <string name="edit_hint">输入一组数字，如:10086</string>
+    <string name="result">生成结果</string>
+    <string name="more_result">算法补充生成</string>
+    <string name="change">换一首</string>
+    <string-array name="spinner_array">
+        <item>清平乐</item>
+        <item>浣溪沙</item>
+        <item>菩萨蛮</item>
+    </string-array>
 </resources>

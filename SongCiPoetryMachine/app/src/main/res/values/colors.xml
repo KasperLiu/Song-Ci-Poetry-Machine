@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material design 参考网站 -->
-    <!--
-        Check Android Theme colors for color reference:
-        https://developer.android.com/training/material/images/ThemeColors.png
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 
-        Refer also to Color palette for the UI colors you should use:
-        http://www.google.com/design/spec/style/color.html#color-ui-color-palette
-    -->
-    <!-- 自定义主题使用的颜色配置 -->
-    <color name="myPrimaryColor">#3F51B5</color>
-    <color name="myPrimaryDarkColor">#3F51B5</color>
-    <color name="myAccentColor">#3F51B5</color>
-    <color name="myDrawerBackground">#F2F2F2</color>
-    <color name="myWindowBackground">#DEDEDE</color>
-    <color name="myTextPrimaryColor">#FFFFFF</color>
-    <color name="myNavigationColor">#000000</color>
-    <color name="base_color_text_black">#3e3e39</color>
-    <color name="base_color_text_gray">#DADADA</color>
-    <color name="selected_gray">#ffdbdbdb</color>
+    <color name="black_translucent_0">#00000000</color>
+    <color name="blue">#4444fd</color>
+    <color name="blue_light">#33B5E5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#fdf9f9</color>
+    <color name="gray_light">#E8E8E8</color>z
 </resources>
