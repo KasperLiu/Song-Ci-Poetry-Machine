@@ -6,18 +6,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
 import scnu.student.songcimachine.songcipoetrymachine.fragment.BookFragment;
 import scnu.student.songcimachine.songcipoetrymachine.fragment.TableFragment;
 import scnu.student.songcimachine.songcipoetrymachine.fragment.WriteFragment;
+import scnu.student.songcimachine.songcipoetrymachine.bean.WordInfo;
+import scnu.student.songcimachine.songcipoetrymachine.utils.DBManager;
+import scnu.student.songcimachine.songcipoetrymachine.utils.TextUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,11 +45,31 @@ public class MainActivity extends AppCompatActivity {
     private int mScreen1_3;
     private int mCurrentPageIndex;
 
+    // Database
+    private final DBManager oneDBManager = new DBManager(this, DBManager.Type.one) ; // 二字词语库
+    private final DBManager twoDBManager = new DBManager(this, DBManager.Type.two); // 三字词语库
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         intiView();
+        // 初始化数据库 新版
+        initDB(oneDBManager);
+        initDB(twoDBManager);
+
+        // 2016.7.9 test the database  1 - 100
+        // getText(int index) 根据数字返回词语 index from 1 to 100.
+        // getWeight(int index) 根据数字返回词语的词频数 index from 1 to 100
+        Log.d("Database", "================ the first two-word is : " + oneDBManager.getText(1)
+                + " ==================");
+        Log.d("Database", "================ the first three-word is : " + twoDBManager.getText(1)
+                + " ==================");
+        Log.d("Database","================ the last two-word is : " + oneDBManager.getText(100)
+                +" ==================");
+        Log.d("Database","================ the last three-word is : " + twoDBManager.getText(100)
+                +" ==================");
+
     }
 
     private void intiView() {
@@ -154,5 +181,85 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup.LayoutParams lp = mTabLine.getLayoutParams();
         lp.width = mScreen1_3;
         mTabLine.setLayoutParams(lp);
+    }
+
+    /**
+     * 初始化数据库  旧版
+     * 读取文本
+     * @param type
+     */
+    private void initDB(final DBManager.Type type) {
+        final DBManager mDbManager = new DBManager(this, type);
+        if (mDbManager.isDbEmpty()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    BufferedReader reader = null;
+                    WordInfo info = null;
+                    String line;
+                    try {
+                        if (type == DBManager.Type.one) {
+                            reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.two), "gbk"));
+                        } else if (type == DBManager.Type.two) {
+                            reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.three), "gbk"));
+                        }
+                        line = reader.readLine();
+                        line = reader.readLine();
+                        while ((line = reader.readLine()) != null) {
+                            info = TextUtil.cutText(line);
+                            mDbManager.insertWord(info);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            reader.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
+    }
+
+    /**
+     * 初始化数据库  新版
+     * 读取文本
+     * @param  mDbManager
+     */
+    private void initDB(final DBManager mDbManager) {
+//        final DBManager mDbManager = new DBManager(this, type);
+        if (mDbManager.isDbEmpty()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    BufferedReader reader = null;
+                    WordInfo info = null;
+                    String line;
+                    try {
+                        if (mDbManager.getType() == DBManager.Type.one) {
+                            reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.two), "gbk"));
+                        } else if (mDbManager.getType() == DBManager.Type.two) {
+                            reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.three), "gbk"));
+                        }
+                        line = reader.readLine();
+                        line = reader.readLine();
+                        while ((line = reader.readLine()) != null) {
+                            info = TextUtil.cutText(line);
+                            mDbManager.insertWord(info);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            reader.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
     }
 }
