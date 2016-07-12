@@ -26,7 +26,8 @@ import scnu.student.songcimachine.songcipoetrymachine.bean.WordInfo;
 import scnu.student.songcimachine.songcipoetrymachine.utils.DBManager;
 import scnu.student.songcimachine.songcipoetrymachine.utils.TextUtil;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     private ViewPager mViewPager;
     private FragmentPagerAdapter mAdpter;
