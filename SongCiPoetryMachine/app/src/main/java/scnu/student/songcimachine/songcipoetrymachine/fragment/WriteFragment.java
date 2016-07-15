@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.EditText;
 
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import scnu.student.songcimachine.songcipoetrymachine.R;
+import scnu.student.songcimachine.songcipoetrymachine.utils.DigitUtil;
+import scnu.student.songcimachine.songcipoetrymachine.MainActivity;
 
 /**
  * Created by 52347 on 2016/7/3.
@@ -27,6 +30,7 @@ public class WriteFragment extends Fragment
     private Spinner mSpinner;
     private ArrayList<String> mList;
     private ArrayAdapter mAdapter;
+    private EditText editText;
 
     private Button goButton;
     private String selectedCiPaiName;
@@ -43,6 +47,7 @@ public class WriteFragment extends Fragment
 
     private void init(View view)
     {
+        editText = (EditText)view.findViewById(R.id.et_input);
         goButton = (Button)view.findViewById(R.id.btn_go);
         goButton.setOnClickListener(onClickListener);
         selectedCiPaiName = "清平乐";
@@ -75,6 +80,15 @@ public class WriteFragment extends Fragment
             switch(v.getId()){
                 case R.id.btn_go:
                     Log.d("词牌名", getFormatWithCiPaiName("清平乐").toString());
+                    DigitUtil digitUtil = new DigitUtil(editText.getText().toString(),
+                            getFormatWithCiPaiName("清平乐"),
+                            ((MainActivity) getActivity()).oneDBManager,
+                            ((MainActivity) getActivity()).twoDBManager);
+                    String allresult = digitUtil.getSentences();//算法生成结果
+                    String result = digitUtil.getUserResult();//生成结果
+                    Log.e("digitutil", allresult);
+                    Log.e("digitutil", "===============");
+                    Log.e("digitutil", result);
                     break;
             }
         }
