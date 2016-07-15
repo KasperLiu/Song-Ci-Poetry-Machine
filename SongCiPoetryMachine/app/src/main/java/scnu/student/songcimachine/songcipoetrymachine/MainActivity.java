@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity
     private int mCurrentPageIndex;
 
     // Database
-    private final DBManager oneDBManager = new DBManager(this, DBManager.Type.one) ; // 二字词语库
-    private final DBManager twoDBManager = new DBManager(this, DBManager.Type.two); // 三字词语库
+    public final DBManager oneDBManager = new DBManager(this, DBManager.Type.one) ; // 二字词语库
+    public final DBManager twoDBManager = new DBManager(this, DBManager.Type.two); // 三字词语库
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
