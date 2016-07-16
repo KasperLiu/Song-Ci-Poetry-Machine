@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -32,8 +33,19 @@ public class WriteFragment extends Fragment
     private ArrayAdapter mAdapter;
     private EditText editText;
 
+    // 生成结果
+    private TextView tv_result;
+    // 词牌名
+    private TextView tv_cipai;
+    // 题目
+    private TextView tv_title;
+    // 宋词
+    private TextView tv_content;
+
     private Button goButton;
     private String selectedCiPaiName;
+
+    private final String TITLE = "随机";
 
     @Nullable
     @Override
@@ -49,13 +61,18 @@ public class WriteFragment extends Fragment
     {
         editText = (EditText)view.findViewById(R.id.et_input);
         goButton = (Button)view.findViewById(R.id.btn_go);
+        tv_result = (TextView)view.findViewById(R.id.tv_result);
+        tv_cipai = (TextView)view.findViewById(R.id.tv_poem_title);
+        tv_title = (TextView)view.findViewById(R.id.tv_content1);
+        tv_content = (TextView)view.findViewById(R.id.tv_content2);
+
         goButton.setOnClickListener(onClickListener);
         selectedCiPaiName = "清平乐";
 
         mSpinner = (Spinner) view.findViewById(R.id.sn_poems);
         mList = new ArrayList<String>();
         mList.add("清平乐");
-        mList.add("涴溪沙");
+        mList.add("浣溪沙");
         mList.add("菩萨蛮");
         mAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, mList);
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -79,16 +96,21 @@ public class WriteFragment extends Fragment
         public void onClick(final View v) {
             switch(v.getId()){
                 case R.id.btn_go:
-                    Log.d("词牌名", getFormatWithCiPaiName("清平乐").toString());
                     DigitUtil digitUtil = new DigitUtil(editText.getText().toString(),
-                            getFormatWithCiPaiName("清平乐"),
+                            getFormatWithCiPaiName(selectedCiPaiName),
                             ((MainActivity) getActivity()).oneDBManager,
                             ((MainActivity) getActivity()).twoDBManager);
                     String allresult = digitUtil.getSentences();//算法生成结果
                     String result = digitUtil.getUserResult();//生成结果
-                    Log.e("digitutil", allresult);
-                    Log.e("digitutil", "===============");
-                    Log.e("digitutil", result);
+                    // 显示宋词
+                    tv_result.setText(result);
+                    tv_cipai.setText(selectedCiPaiName);
+                    tv_title.setText(TITLE);
+                    tv_content.setText(allresult);
+
+                    Log.d("digitutil", allresult);
+                    Log.d("digitutil", "===============");
+                    Log.d("digitutil", result);
                     break;
             }
         }

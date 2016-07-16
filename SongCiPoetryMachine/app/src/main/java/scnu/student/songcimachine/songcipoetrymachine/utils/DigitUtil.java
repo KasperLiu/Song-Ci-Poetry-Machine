@@ -99,11 +99,23 @@ public class DigitUtil {
                     break;
             }
             result[sentenceIndex] = sentence;
+
+
+            // 浣溪沙特殊格式
+            if (result.length == 6){
+                sentences += result[sentenceIndex] + dealWithHuanxisha(sentenceIndex);
+                continue;
+            }
+            // 普通词牌格式
             if (sentenceIndex == result.length - 1){
                 sentences += result[sentenceIndex] + "。\n";
                 break;
             }
-            sentences += result[sentenceIndex] + "，\n";
+            else{
+                //添加标点符号，换行符等。
+                sentences += result[sentenceIndex] + addPunctuations(sentenceIndex);
+            }
+
         }
         return sentences;
     }
@@ -122,7 +134,7 @@ public class DigitUtil {
             return r;
         }
         for (int i = 0;i < beginRandomIndex - 1;i++){
-            r += result[i] + ",\n";
+            r += result[i] + ", ";
         }
         r += result[beginRandomIndex - 1];
         return r;
@@ -201,4 +213,27 @@ public class DigitUtil {
         return false;
     }
 
+    /**
+     * 添加标点符号
+     */
+    private String addPunctuations(int index){
+        if(( 1 + index ) % 2 == 1 ){
+            return ", ";
+        }
+        else{
+            return "。\n";
+        }
+
+    }
+
+    /**
+     * 浣溪沙的特殊格式
+     * 每行都是7字词句，共6句
+     */
+    private String dealWithHuanxisha(int index){
+        if(index == 2 || index == 5){
+            return "。\n";
+        }
+        return "，\n";
+    }
 }
