@@ -43,7 +43,13 @@ public class WriteFragment extends Fragment
     private TextView tv_content;
 
     private Button goButton;
+    // 词牌名
     private String selectedCiPaiName;
+
+    // 补充结果
+    private String finalResult;
+    // 生成结果
+    private String curResult;
 
     private final String TITLE = "随机";
 
@@ -100,17 +106,17 @@ public class WriteFragment extends Fragment
                             getFormatWithCiPaiName(selectedCiPaiName),
                             ((MainActivity) getActivity()).oneDBManager,
                             ((MainActivity) getActivity()).twoDBManager);
-                    String allresult = digitUtil.getSentences();//算法生成结果
-                    String result = digitUtil.getUserResult();//生成结果
+                    finalResult = digitUtil.getSentences();//算法生成结果
+                    curResult = digitUtil.getUserResult();//生成结果
                     // 显示宋词
-                    tv_result.setText(result);
+                    tv_result.setText(curResult);
                     tv_cipai.setText(selectedCiPaiName);
                     tv_title.setText(TITLE);
-                    tv_content.setText(allresult);
+                    tv_content.setText(finalResult);
 
-                    Log.d("digitutil", allresult);
+                    Log.d("digitutil", finalResult);
                     Log.d("digitutil", "===============");
-                    Log.d("digitutil", result);
+                    Log.d("digitutil", curResult);
                     break;
             }
         }
