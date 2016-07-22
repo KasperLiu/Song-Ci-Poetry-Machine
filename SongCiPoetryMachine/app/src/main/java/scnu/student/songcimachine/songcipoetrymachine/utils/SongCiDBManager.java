@@ -31,7 +31,7 @@ public class SongCiDBManager {
     public SongCiDBManager(Context context) {
         mContext = context;
         mHelper = SongCiDBHelper.getInstance(mContext);
-            }
+    }
 
     /**
      * 向数据库添加宋词

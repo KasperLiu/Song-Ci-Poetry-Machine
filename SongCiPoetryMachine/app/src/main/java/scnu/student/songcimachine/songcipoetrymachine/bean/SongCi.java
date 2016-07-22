@@ -1,9 +1,12 @@
 package scnu.student.songcimachine.songcipoetrymachine.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Kasper on 2016/7/16.
  */
-public class SongCi {
+public class SongCi implements Serializable {
+    private static final long serialVersionUID = 1L;
     // id唯一标识
     private int _id;
     // 词牌名

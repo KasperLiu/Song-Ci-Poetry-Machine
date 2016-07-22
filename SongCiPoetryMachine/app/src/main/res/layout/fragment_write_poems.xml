@@ -97,9 +97,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/result"
             android:textColor="@color/blue_light"
-            android:textSize="@dimen/text_size_h6"
+            android:textSize="@dimen/text_size_h4"
             android:id="@+id/tv_result" />
     </LinearLayout>
 
@@ -123,9 +122,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/result"
             android:textColor="@color/blue_light"
-            android:textSize="@dimen/text_size_h5"
+            android:textSize="@dimen/text_size_h3"
             android:id="@+id/tv_poem_title" />
 
         <TextView
@@ -133,11 +131,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:singleLine="false"
-            android:text="@string/result"
             android:textColor="@color/blue_light"
-            android:textSize="@dimen/text_size_h6"
+            android:textSize="@dimen/text_size_h4"
             android:id="@+id/tv_content1" />
 
         <TextView
@@ -145,11 +143,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:singleLine="false"
-            android:text="@string/result"
             android:textColor="@color/blue_light"
-            android:textSize="@dimen/text_size_h6"
+            android:textSize="@dimen/text_size_h4"
             android:id="@+id/tv_content2" />
     </LinearLayout>
 
@@ -200,11 +198,4 @@
             android:src="@drawable/share" />
     </RelativeLayout>
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_gravity="right"
-        android:layout_weight="1" />
 </LinearLayout>

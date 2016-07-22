@@ -11,25 +11,28 @@
         android:layout_height="wrap_content"
         android:background="@color/gray_light"
         android:padding="3dp"
-        android:text="time"
-        android:textSize="@dimen/text_size_h5" />
+        android:textSize="@dimen/text_size_h6" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:text="name"
         android:gravity="center_vertical"
-        android:textSize="@dimen/text_size_h5"
-        android:drawableRight="@drawable/go_in" />
+        android:textSize="@dimen/text_size_h4"
+        android:drawableRight="@drawable/arrow_right" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textSize="@dimen/text_size_h4"/>
 
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:text="content"
         android:textSize="@dimen/text_size_h5" />
 
 </LinearLayout>

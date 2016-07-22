@@ -19,12 +19,8 @@ import scnu.student.songcimachine.songcipoetrymachine.bean.BeanPoemCollect;
  */
 public class TableFragment extends Fragment {
 
-    private ListView mListView;
-    private List<BeanPoemCollect> mList;
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_poems_book, container, false);
-        mListView = (ListView) rootView.findViewById(R.id.lv_collect);
+        View rootView = inflater.inflate(R.layout.fragment_poems_table, container, false);
         return rootView;
     }
 }

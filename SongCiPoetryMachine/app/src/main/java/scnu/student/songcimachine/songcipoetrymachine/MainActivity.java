@@ -1,5 +1,8 @@
 package scnu.student.songcimachine.songcipoetrymachine;
 
+import android.content.Intent;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private ViewPager mViewPager;
-    private FragmentPagerAdapter mAdpter;
+    private FragmentStatePagerAdapter mAdpter;
     private List<Fragment> mTabs;
 
     private ImageView iv_write;
@@ -59,19 +62,15 @@ public class MainActivity extends AppCompatActivity
         initDB(oneDBManager);
         initDB(twoDBManager);
 
-        // 2016.7.9 test the database  1 - 100
-        // getText(int index) 根据数字返回词语 index from 1 to 100.
-        // getWeight(int index) 根据数字返回词语的词频数 index from 1 to 100
-        Log.d("Database", "================ the first two-word is : " + oneDBManager.getText(1)
-                + " ==================");
-        Log.d("Database", "================ the first three-word is : " + twoDBManager.getText(1)
-                + " ==================");
-        Log.d("Database","================ the last two-word is : " + oneDBManager.getText(100)
-                +" ==================");
-        Log.d("Database","================ the last three-word is : " + twoDBManager.getText(100)
-                +" ==================");
-
     }
+
+    protected void onResume(){
+        super.onResume();
+        mAdpter.notifyDataSetChanged();
+        //Log.d("MainActivity", "======== onResume is Called =======");
+    }
+
+
 
     private void intiView() {
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
@@ -95,7 +94,8 @@ public class MainActivity extends AppCompatActivity
         mTabs.add(bookFragment);
         mTabs.add(tableFragment);
 
-        mAdpter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+        // 需要实现刷新fragment_book
+        mAdpter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public int getCount() {
@@ -106,9 +106,18 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 return mTabs.get(position);
             }
+
+            @Override
+            public int getItemPosition(Object object) {
+                return POSITION_NONE;
+            }
+
         };
 
+        writeFragment.setMainAdapter(mAdpter);
+
         mViewPager.setAdapter(mAdpter);
+        mViewPager.setOffscreenPageLimit(3);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -263,4 +272,9 @@ public class MainActivity extends AppCompatActivity
             }).start();
         }
     }
+
+    public FragmentStatePagerAdapter getMainAdapter(){
+        return mAdpter;
+    }
+
 }
